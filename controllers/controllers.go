@@ -31,3 +31,18 @@ func CreateHero(c *gin.Context) {
 	database.DB.Create(&hero)
 	c.JSON(http.StatusOK, hero)
 }
+
+func GetHeroById(c *gin.Context) {
+	var hero models.Hero
+	id := c.Params.ByName("id")
+	database.DB.First(&hero, id)
+
+	if hero.ID == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"Not found": "Hero not found",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, hero)
+}
