@@ -8,5 +8,3 @@ type Hero struct {
 	Ssn   string `json:"ssn"`
 	Power string `json:"power"`
 }
-
-var Heroes []Hero

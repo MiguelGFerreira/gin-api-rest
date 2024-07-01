@@ -9,7 +9,9 @@ import (
 )
 
 func GetAllHeroes(c *gin.Context) {
-	c.JSON(200, models.Heroes)
+	var heroes []models.Hero
+	database.DB.Find(&heroes)
+	c.JSON(200, heroes)
 }
 
 func Greetings(c *gin.Context) {
